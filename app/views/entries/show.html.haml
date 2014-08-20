@@ -1,8 +1,6 @@
+%h1= @entry.blog.title
 %p#notice= notice
 
-%p
-  %b Blog:
-  = @entry.blog_id
 %p
   %b Title:
   = @entry.title
@@ -10,6 +8,6 @@
   %b Body:
   = @entry.body
 
-= link_to 'Edit', edit_entry_path(@entry)
+= link_to 'Edit', edit_blog_entry_path(@entry.blog_id, @entry)
 \|
-= link_to 'Back', entries_path
+= link_to 'Back', blog_path(@entry.blog_id)

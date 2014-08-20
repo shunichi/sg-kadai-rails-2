@@ -1,5 +1,5 @@
-%h1 New entry
+%h1= raw "New entry: #{@entry.blog.title}"
 
 = render 'form'
 
-= link_to 'Back', entries_path
+= link_to 'Back', blog_path(@entry.blog_id)

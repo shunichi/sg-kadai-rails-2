@@ -1,34 +1,28 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
 
-  # GET /entries
-  # GET /entries.json
-  def index
-    @entries = Entry.all
-  end
-
-  # GET /entries/1
-  # GET /entries/1.json
+  # GET /blog/1/entries/1
+  # GET /blog/1/entries/1.json
   def show
   end
 
-  # GET /entries/new
+  # GET /blog/1/entries/new
   def new
-    @entry = Entry.new
+    @entry = Entry.new(blog_id: params[:blog_id])
   end
 
-  # GET /entries/1/edit
+  # GET /blog/1/entries/1/edit
   def edit
   end
 
-  # POST /entries
-  # POST /entries.json
+  # POST /blog/1/entries
+  # POST /blog/1/entries.json
   def create
     @entry = Entry.new(entry_params)
 
     respond_to do |format|
       if @entry.save
-        format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
+        format.html { redirect_to blog_entry_path(@entry.blog_id, @entry), notice: 'Entry was successfully created.' }
         format.json { render :show, status: :created, location: @entry }
       else
         format.html { render :new }
@@ -37,12 +31,12 @@ class EntriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /entries/1
-  # PATCH/PUT /entries/1.json
+  # PATCH/PUT /blog/1/entries/1
+  # PATCH/PUT /blog/1/entries/1.json
   def update
     respond_to do |format|
       if @entry.update(entry_params)
-        format.html { redirect_to @entry, notice: 'Entry was successfully updated.' }
+        format.html { redirect_to blog_entry_path(@entry.blog_id, @entry), notice: 'Entry was successfully updated.' }
         format.json { render :show, status: :ok, location: @entry }
       else
         format.html { render :edit }
@@ -51,12 +45,12 @@ class EntriesController < ApplicationController
     end
   end
 
-  # DELETE /entries/1
-  # DELETE /entries/1.json
+  # DELETE /blog/1/entries/1
+  # DELETE /blog/1/entries/1.json
   def destroy
     @entry.destroy
     respond_to do |format|
-      format.html { redirect_to entries_url, notice: 'Entry was successfully destroyed.' }
+      format.html { redirect_to blog_url(@entry.blog_id), notice: 'Entry was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :entries
+  resources :blogs do
+    resources :entries, except: [:index]
+  end
 
-  resources :blogs
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
