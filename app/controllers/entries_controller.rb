@@ -5,6 +5,7 @@ class EntriesController < ApplicationController
   # GET /blog/1/entries/1
   # GET /blog/1/entries/1.json
   def show
+    @comment = Comment.new(entry_id: params[:id])
   end
 
   # GET /blog/1/entries/new
@@ -70,4 +71,5 @@ class EntriesController < ApplicationController
     def entry_params
       params.require(:entry).permit(:blog_id, :title, :body)
     end
+
 end
