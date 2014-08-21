@@ -1,3 +1,8 @@
+- unless notice.blank?
+  %p{id: "notice"}= notice
+- unless alert.blank?
+  %p{id: "alert"}= alert
+
 %h1 Listing blogs
 
 %table
