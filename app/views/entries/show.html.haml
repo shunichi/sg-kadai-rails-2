@@ -22,7 +22,7 @@
       - @entry.comments.each do |comment|
         %tr
           %td= comment.status == 'approved' ? comment.body : '(承認待ち)'
-          %td= link_to 'Approve', '#' if comment.status == 'unapproved'
+          %td= link_to 'Approve', approve_comment_path(comment), method: :patch if comment.status == 'unapproved'
           %td= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }
 
 %h2 New comment

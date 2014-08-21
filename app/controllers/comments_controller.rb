@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:destroy]
+  before_action :set_comment, only: [:destroy, :approve]
 
   def create
     @comment = Comment.new(comment_params)
@@ -21,6 +21,18 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to blog_entry_path(@comment.entry.blog_id, @comment.entry), notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def approve
+    respond_to do |format|
+      if @comment.update(status: 'approved')
+        format.html { redirect_to blog_entry_path(@comment.entry.blog_id, @comment.entry), notice: 'Comment was succcessfully approved.' }
+        format.json { render json: @comment, status: :ok }
+      else
+        format.html { render blog_entry_path(@comment.entry.blog_id, @comment.entry) }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
     end
   end
 
