@@ -8,6 +8,8 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_to blog_entry_path(@comment.entry.blog_id, @comment.entry), notice: 'Comment was successfully added.' }
         format.json { render json: @comment, status: :created }
+
+        @mail = Notifications.comment_mail(@comment).deliver
       else
         format.html { render blog_entry_path(@comment.entry.blog_id, @comment.entry) }
         format.json { render json: @comment.errors, status: :unprocessable_entity }

@@ -16,6 +16,20 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
+  # メールのビューでurlヘルパーが使えるようにホスト名を指定しておく
+  config.action_mailer.default_url_options = { host: '0.0.0.0:3000' }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    enable_starttls_auto: true,
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'gmail.com',
+    authentication: :plain,
+    user_name: '',
+    password: ''
+  }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
