@@ -48,5 +48,7 @@ group :development do
   gem 'pry-byebug'
   gem 'hirb'
   gem 'hirb-unicode'
+
+  gem 'letter_opener'
 end
 
