@@ -42,6 +42,7 @@ gem 'haml-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.99.0'
+  gem 'rspec-collection_matchers', '~> 1.0.0'
   gem 'factory_girl_rails', '~> 4.2.1'
 end
 

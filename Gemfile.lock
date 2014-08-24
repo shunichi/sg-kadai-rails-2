@@ -221,6 +221,7 @@ DEPENDENCIES
   pry-rails
   pry-stack_explorer
   rails (= 4.1.4)
+  rspec-collection_matchers (~> 1.0.0)
   rspec-rails (~> 2.99.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
